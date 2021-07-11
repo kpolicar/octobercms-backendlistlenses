@@ -1,0 +1,48 @@
+<?= $this->makePartial('~/modules/backend/widgets/filter/partials/_filter_scopes.htm') ?>
+
+<button class="filter-scope"
+        href="#"
+        onclick="abc(this)"
+        style="background: #E9EDF3; border: 0; float: right; border-top-left-radius: 4px;border-top-right-radius: 4px;">
+    Open Lens
+</button>
+
+<script>
+    function abc (element) {
+        var $scope = $(element);
+        if ($scope.hasClass('filter-scope-open')) {
+            $scope.removeClass('filter-scope-open')
+            return;
+        }
+
+        var modalParent = $scope.parents('.modal-dialog');
+
+        $scope.ocPopover({
+            content: '<div class="control-filter-popover control-filter-box-popover is-range kpolicar-control-filter-popover">' +
+                '<ul class="filter-items" style="padding: 0">' +
+                '<li><a href="#">Best Selling Products</a></li>' +
+                '<li><a href="#">New Products</a></li>' +
+                '</div>',
+            modal: false,
+            highlightModalTarget: true,
+            closeOnPageClick: true,
+            placement: 'bottom',
+            container: false
+        });
+        $scope.addClass('filter-scope-open');
+    }
+
+    $('button.filter-scope').on('hide.oc.popover', function() {
+        var $scope = $(this);
+        setTimeout(function() { $scope.removeClass('filter-scope-open') }, 200);
+    });
+</script>
+
+<style>
+    .control-filter {
+        overflow: auto;
+    }
+    .control-filter-popover.kpolicar-control-filter-popover .filter-items a:before {
+        content: '';
+    }
+</style>
