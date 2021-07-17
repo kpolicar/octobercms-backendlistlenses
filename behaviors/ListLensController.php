@@ -1,5 +1,6 @@
 <?php namespace Kpolicar\BackendListLenses\Behaviors;
 
+use Str;
 use File;
 use Event;
 use Backend\Classes\ControllerBehavior;
@@ -56,6 +57,16 @@ class ListLensController extends ControllerBehavior
         });
 
         $this->controller->index();
+        $this->controller->pageTitle =
+            trans($this->listLensActiveConfiguration('title')) ?: $this->controller->pageTitle;
+        $this->controller->listGetWidget()->bindEvent(
+            'list.extendQuery',
+            [$this->controller, $this->getMethodNameForListLensQuery($lens)]);
         return $this->controller->listRender();
+    }
+
+    protected function getMethodNameForListLensQuery($lens)
+    {
+        return 'lens'.Str::studly($lens);
     }
 }
