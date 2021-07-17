@@ -53,6 +53,7 @@ class ListLensController extends ControllerBehavior
                 return;
 
             $config['toolbar']['buttons'] = '$/kpolicar/backendlistlenses/layouts/toolbar/_buttons.htm';
+            $config['list'] = $this->listLensActiveConfiguration('list') ?: $config['list'];
             return $config;
         });
 
