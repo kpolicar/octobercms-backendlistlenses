@@ -15,7 +15,7 @@ class ExtendFilter
     private function shouldExtendWithListLens(Filter $filter)
     {
         return optional($filter->getController())->isClassExtendedWith('Kpolicar.BackendListLenses.Behaviors.ListLensController')
-            && $filter->getConfig('lenses');
+            && $filter->getConfig('lenses') !== false;
     }
 
     private function overrideViews(Filter $filter)
