@@ -3,6 +3,8 @@
 use Backend;
 use Backend\Widgets\Filter;
 use Closure;
+use Kpolicar\BackendListLenses\Behaviors\ListLensController;
+use Kpolicar\BackendListLenses\Extensions\ExtendFilter;
 use System\Classes\PluginBase;
 
 /**
@@ -43,20 +45,7 @@ class Plugin extends PluginBase
     public function boot()
     {
         Filter::extend(function ($filter) {
-            if ($filter->getConfig('lenses')) {
-                $privatePropertyReader = function & ($object, $property) {
-                    $propertyReference = & Closure::bind(function & () use ($property) {
-                        return $this->$property;
-                    }, $object, $object)->__invoke();
-
-                    return $propertyReference;
-                };
-
-                $viewPath = & $privatePropertyReader($filter, 'viewPath');
-                $viewPath = array_merge([
-                    $filter->getViewPath('$/kpolicar/backendlistlenses/layouts/filter'),
-                ], (array) $viewPath);
-            }
+            (new ExtendFilter)($filter);
         });
     }
 }

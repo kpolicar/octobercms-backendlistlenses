@@ -6,4 +6,7 @@ return [
         'description' => '...',
         'tab' => 'Customization',
     ],
+    'list' => [
+        'button_label' => 'Open Lens',
+    ],
 ];
