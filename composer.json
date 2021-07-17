@@ -1,7 +1,8 @@
 {
     "name": "kpolicar/backendlistlenses-plugin",
     "type": "october-plugin",
-    "description": "No description provided yet...",
+    "description": "Lenses allow you to create backend pages with customized queries to better represent your data.",
+    "keywords": ["october", "octobercms", "backend", "lens", "sublist", "query", "group"],
     "require": {
         "composer/installers": "~1.0"
     }
