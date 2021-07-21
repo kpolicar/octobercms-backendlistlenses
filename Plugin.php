@@ -20,8 +20,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'kpolicar.backendlenses::lang.plugin.name',
-            'description' => 'kpolicar.backendlenses::lang.plugin.description',
+            'name'        => 'kpolicar.backendlistlenses::lang.plugin.name',
+            'description' => 'kpolicar.backendlistlenses::lang.plugin.description',
             'author'      => 'Klemen Janez Poličar',
             'icon'        => 'icon-search'
         ];
